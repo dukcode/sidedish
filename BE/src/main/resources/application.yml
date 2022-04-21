@@ -18,7 +18,7 @@ spring:
       on-profile: local-mem-h2
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:sidedish;mode=MYSQL;
+    url: jdbc:h2:mem:sidedish;mode=MYSQLx
     username: sa
     password:
   sql:
