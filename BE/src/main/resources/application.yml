@@ -1,14 +1,15 @@
 # active profile
 spring:
   profiles:
-    active: local-h2
+    active: dev-mysql
 
 ---
 # profile group
 spring:
   profiles:
     group:
-      local-h2: "local-mem-h2, local-log"
+      dev-h2: "local-mem-h2, local-log"
+      dev-mysql: "local-ssd-mysql, local-log"
 
 ---
 # local-mem-h2
@@ -30,6 +31,24 @@ spring:
   h2:
     console:
       enabled: true
+
+---
+# local-ssd-mysql
+spring:
+  config:
+    activate:
+      on-profile: local-ssd-mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sidedish
+    username: root
+    password:
+  sql:
+    init:
+      platform: mysql
+      mode: always
+      schema-locations: classpath:ddl.sql
+      data-locations: classpath:dml.sql
 
 ---
 # log-group
